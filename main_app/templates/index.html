@@ -6,8 +6,19 @@ Index of Pokemons
 
 {% block content %}
 <h1>Index of Pokemons</h1>
+<main class="index">
     {% for pokemon in pokemons %}
-    <h3>Name: {{pokemon.name}}</h3>
-    <h3>Type: {{pokemon.type}}</h3>
+    <div class="pokemon-index">
+        <h3>{{pokemon.name}}</h3>
+        <ul>
+            <li>Type: {{pokemon.type}}</li>
+            <li>Description: {{pokemon.description}}</li>
+            <li>Abilities: 
+                {% for ability in pokemon.abilities %}
+                    {{ability}},
+                {% endfor %}</li>
+        </ul>
+    </div>
     {% endfor %}
+</main>
 {% endblock %}

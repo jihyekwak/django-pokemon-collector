@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Index of Pokemons
+{% endblock %}
+
+{% block content %}
+<h1>My Pokemon Collection ({{ pokemons|length }})</h1>
+<main class="collection">
+    {% for pokemon in pokemons %}
+        <div class="pokemon-collection">
+            <a href="/">
+            <h3>{{pokemon.name}}</h3>
+            <ul>
+                <li><p>Type: {{pokemon.type}}</p></li>
+                <li>Description: <p>{{pokemon.description}}</p></li>
+                <li>Abilities: 
+                {% for ability in pokemon.abilities %}
+                    {{ability}},
+                {% endfor %}</li>
+            </ul>
+            </a>
+        </div>
+    {% endfor %}
+</main>
+{% endblock %}
+

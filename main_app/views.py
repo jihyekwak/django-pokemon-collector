@@ -10,14 +10,28 @@ from django.views.generic.base import TemplateView
 class Home(TemplateView):
     template_name='home.html'
 
+class About(TemplateView):
+    template_name='about.html'
+
 class Pokemon:
-    def __init__(self, name, type):
+    def __init__(self, name, type, description, abilities=[],is_collected = False ):
         self.name = name
         self.type = type
+        self.description = description
+        self.abilities = abilities
+        self.is_collected = is_collected
 
 pokemons = [
-    Pokemon("Pikachu", "Electric")
+    Pokemon("Pikachu", "Electric", 'Pikachu that can generate powerful electricity have cheek sacs that are extra soft and super stretchy.', ['Static'], True ),
+    Pokemon("Eevee", "Normal", 'Eight different Pokemon evolve from the amazingly adaptive Eevee, accrogind to current stuies. It has the ability to alter the composition of its body to suit its surrounding environment.', ['Run Away', 'Adaptability'], False ),
+    Pokemon("Togepi", "Normal", 'The shell seems to be filled with joy. It is said that it will share good luck when treated kindly.', ['Serene Grace', 'Hustle'], True ),
+    Pokemon("Clefairy", "Fairy", 'It is said that happiness will come to those who see a gathering of Clefairy dancing under a full moon.', ['Cute Charm', 'Nagic Guard'], True),
+    Pokemon("Snorlax", "Normal", 'It is not satisfied unless it eats over 880 pounds of food every day. When it is done eating, it goes promptly to sleep.', ['Thick Fat', 'Immunity'], True),
+    Pokemon("Charizard", "Fire", 'It spits fire that is hot enough to melt boulders. It may cause forest fires by blowing flames.', ['Blaze'], True),
+    Pokemon("Piplup", "Water", 'It doesn’t like to be taken care of. It’s difficult to bond with since it won’t listen to its Trainer.', ['Torrent'], True)
 ]
+
+collected_pokemons = [pokemon for pokemon in pokemons if pokemon.is_collected]
 
 class Index(TemplateView):
     template_name='index.html'
@@ -26,3 +40,12 @@ class Index(TemplateView):
         context = super().get_context_data(**kwargs)
         context['pokemons']= pokemons
         return context
+
+class Collection(TemplateView):
+    template_name = 'collection.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['pokemons']= collected_pokemons
+        return context
+
