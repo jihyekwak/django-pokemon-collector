@@ -31,10 +31,14 @@ h1 {
     transition: all 0.2s ease-in-out; 
 }
 
-.pokemon-collection a {
+.pokemon-collection-detail {
+    display: none;
+}
+
+/* .pokemon-collection a {
     text-decoration: none;
     color: black;
-}
+} */
 
 .pokemon-collection ul {
     padding-left: 20px;
@@ -45,6 +49,14 @@ h1 {
     background-color: #FFCC01;
     box-shadow: 10px 10px 10px 0px gray;
     transform: scale(1.1);
+}
+
+.pokemon-collection:hover .pokemon-collection-detail {
+    display: block;
+}
+
+.pokemon-collection:hover .pokemon-collection-name-img {
+    display: none;
 }
 
 .pokemon-collection h3 {

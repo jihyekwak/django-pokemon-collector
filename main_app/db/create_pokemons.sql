@@ -1,0 +1,2 @@
+INSERT INTO main_app_pokemon(name, img, type, description, abilities, collected, evolved, created_at)
+VALUES ('Caterpie', 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/010.png', 'Bug', 'For protection, it releases a horrible stench from the antenna on its head to drive away enemies.', ["Shiled Dust"], True, False, '03-22-2022')
