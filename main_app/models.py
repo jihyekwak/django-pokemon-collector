@@ -30,8 +30,8 @@ class Pokemon(models.Model):
     type = models.CharField(max_length = 10, choices = TYPE_CHOICES)
     description = models.TextField(blank = True)
     abilities = ArrayField(models.CharField(max_length = 20), blank = True)
-    collected = models.BooleanField(default = False)
     evolved = models.BooleanField(default = False)
+    collected = models.BooleanField(default = False)
     created_at = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):

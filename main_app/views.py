@@ -1,11 +1,9 @@
-from re import template
-from tempfile import tempdir
 from django.shortcuts import render
 from sre_constants import SUCCESS
 from .models import Pokemon
 from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
-from django.views.generic.edit import DeleteView
+from django.views.generic.edit import CreateView, DeleteView
 # from django.views import View
 # from django.http import HttpResponse
 
@@ -55,8 +53,15 @@ class Collection(TemplateView):
         context['pokemons']= Pokemon.objects.filter(collected = True)
         return context
 
+class Create(CreateView):
+    model = Pokemon
+    fields = ['name', 'img', 'type', 'description', 'abilities', 'evolved', 'collected']
+    template_name= "create.html"
+    success_url ="/index/"
+
 class Detail(DetailView, DeleteView):
     model = Pokemon
+    fields = ['name', 'img', 'type', 'description', 'abilities', 'evolved', 'collected']
     template_name = "detail.html"
     success_url = "/index/"
 

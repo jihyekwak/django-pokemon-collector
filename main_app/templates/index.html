@@ -9,10 +9,8 @@ Index of Pokemons
 <main class="index">
     {% for pokemon in pokemons %}
     <div class="pokemon-index">
-        <a href="{% url 'detail' pokemon.pk %}">
-            <h3>{{pokemon.name}}</h3>
-        </a>
         <img src="{{pokemon.img}}" alt="{{pokemon.name}}">
+        <h3>{{pokemon.name}}</h3>
         <ul>
             <li>Type: {{pokemon.type}}</li>
             <li>Description: {{pokemon.description}}</li>
@@ -20,9 +18,11 @@ Index of Pokemons
                 {% for ability in pokemon.abilities %}
                     {{ability}},
                 {% endfor %}</li>
-            <li>Collected: {{pokemon.collected}}</li>
             <li>Evolved: {{pokemon.evolved}}</li>
-            <li>Date: {{pokemon.created_at}}</li>
+            <li>Collected: {{pokemon.collected}}</li>
+            <a href="{% url 'detail' pokemon.pk %}">
+                <button>Detail</button>
+            </a>
         </ul>
     </div>
     {% endfor %}
