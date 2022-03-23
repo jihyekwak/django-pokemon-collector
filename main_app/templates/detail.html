@@ -1,17 +1,7 @@
 {% extends 'base.html' %}
 
-{% block title %}
-Index of Pokemons
-{% endblock %}
-
 {% block content %}
-<h1>Index of Pokemons</h1>
-<main class="index">
-    {% for pokemon in pokemons %}
-    <div class="pokemon-index">
-        <a href="{% url 'detail' pokemon.pk %}">
-            <h3>{{pokemon.name}}</h3>
-        </a>
+<h3>{{pokemon.name}}</h3>
         <img src="{{pokemon.img}}" alt="{{pokemon.name}}">
         <ul>
             <li>Type: {{pokemon.type}}</li>
@@ -24,7 +14,11 @@ Index of Pokemons
             <li>Evolved: {{pokemon.evolved}}</li>
             <li>Date: {{pokemon.created_at}}</li>
         </ul>
-    </div>
-    {% endfor %}
-</main>
+        <div>
+            <p>Delete</p>
+            <form method="post">
+                {% csrf_token %}
+                <input type="submit" value="Delete" />
+            </form>
+        </div>
 {% endblock %}
