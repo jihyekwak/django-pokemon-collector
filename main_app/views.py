@@ -43,7 +43,13 @@ class Index(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['pokemons']= Pokemon.objects.all()
+        name = self.request.GET.get("name")
+        if name != None:
+            context['pokemons'] = Pokemon.objects.filter(name__icontains=name)
+            context['header'] = f"Searching for {name}"
+        else:
+            context['pokemons']= Pokemon.objects.all()
+            context['header']= "Index of Pokemon"
         return context
 
 class Collection(TemplateView):

@@ -5,8 +5,19 @@ Index of Pokemons
 {% endblock %}
 
 {% block content %}
-<h1>Index of Pokemons</h1>
+
+<form>
+    <div>
+        <input type="text" name="name" placeholder="Pokemon Name">
+        <input type="submit" value="Search">
+        <a href="{% url 'index' %}">Clear Search</a>
+        <select>
+            <option>type</option>
+        </select>
+    </div>
+</form>
 <main class="index">
+    <h1>{{header}}</h1>
     {% for pokemon in pokemons %}
     <div class="pokemon-index">
         <img src="{{pokemon.img}}" alt="{{pokemon.name}}">
@@ -21,7 +32,7 @@ Index of Pokemons
             <li>Evolved: {{pokemon.evolved}}</li>
             <li>Collected: {{pokemon.collected}}</li>
             <a href="{% url 'detail' pokemon.pk %}">
-                <button>Detail</button>
+                <button>Pokemon Detail</button>
             </a>
         </ul>
     </div>
