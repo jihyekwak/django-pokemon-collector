@@ -1,9 +1,10 @@
 from django.shortcuts import render
+from django.urls import reverse
 from sre_constants import SUCCESS
 from .models import Pokemon
 from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
-from django.views.generic.edit import CreateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # from django.views import View
 # from django.http import HttpResponse
 
@@ -65,4 +66,9 @@ class Detail(DetailView, DeleteView):
     template_name = "detail.html"
     success_url = "/index/"
 
-
+class Update(UpdateView):
+    model = Pokemon
+    fields = ['name', 'img', 'type', 'description', 'abilities', 'evolved', 'collected']
+    template_name = "update.html"
+    def get_success_url(self):
+        return reverse('detail', kwargs = {'pk': self.object.pk})

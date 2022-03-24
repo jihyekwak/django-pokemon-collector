@@ -15,6 +15,9 @@
         <li>Date: {{pokemon.created_at}}</li>
     </ul>
     <div>
+        <a href="{% url 'update' pokemon.pk %}"> 
+            <button>update</button>  
+        </a>
         <p>Delete</p>
         <form method="post">
             {% csrf_token %}
