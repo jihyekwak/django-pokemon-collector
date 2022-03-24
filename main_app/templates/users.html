@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Trainers</h1>
+    {% for user in users %}
+        <a href="/user/{{user.username}}">
+            <h3>{{user.username}}({{user.pokemon_set.all|length}})</h3>
+        </a>
+        <!-- {% for pokemon in user.pokemon_set.all %}
+            <p>{{pokemon.name}}</p>
+        {% empty %}
+            <p>No pokemon yet</p>
+        {% endfor %} -->
+    {% endfor %}
+{% endblock %}

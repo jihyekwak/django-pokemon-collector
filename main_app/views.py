@@ -1,7 +1,9 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from sre_constants import SUCCESS
 from .models import Pokemon
+from django.contrib.auth.models import User
 from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -62,9 +64,15 @@ class Collection(TemplateView):
 
 class Create(CreateView):
     model = Pokemon
-    fields = ['name', 'img', 'type', 'description', 'abilities', 'evolved', 'collected']
+    fields = ['name', 'img', 'type', 'description', 'abilities', 'evolved', 'collected', 'user']
     template_name= "create.html"
     success_url ="/index/"
+
+    def from_valid(self, form):
+        self.object = form.save(commit = False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect('/index/')
 
 class Detail(DetailView, DeleteView):
     model = Pokemon
@@ -74,7 +82,16 @@ class Detail(DetailView, DeleteView):
 
 class Update(UpdateView):
     model = Pokemon
-    fields = ['name', 'img', 'type', 'description', 'abilities', 'evolved', 'collected']
+    fields = ['name', 'img', 'type', 'description', 'abilities', 'evolved', 'collected', 'user']
     template_name = "update.html"
     def get_success_url(self):
         return reverse('detail', kwargs = {'pk': self.object.pk})
+
+def profile(request, username):
+    user = User.objects.get(username = username)
+    pokemons = Pokemon.objects.filter(user = user)
+    return render(request, 'profile.html', {'username': username, 'pokemons': pokemons})
+
+def users(request):
+    users = User.objects.all()
+    return render(request, 'users.html', {'users':users})
