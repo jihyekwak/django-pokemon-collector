@@ -1,18 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <!-- <h1>{{username}}'s Profile Page</h1>
 
-    {% for pokemon in pokemons %}
-        <a href="/index/{{pokemon.id}}">
-            <p>{{pokemon.name}}</p>
-        </a>
-    {% empty %}
-        <p>No pokemons yet</p>
-    {% endfor %} -->
+<h1>{{username}}'s Profile</h1>
 
 
-    <h1>{{username}}'s Collection ({{ pokemons|length }})</h1>
+
+    <h1>{{username}}'s Collection</h1>
+    <h3>Collected Pokemons :  {{ pokemons|length }}</h3>
 <main class="collection">
     {% for pokemon in pokemons %}
         <div class="pokemon-collection">
@@ -38,6 +33,8 @@
                 </div>
             </a>
         </div>
+        {% empty %}
+        <p>No pokemons yet</p>
 
     {% endfor %}
 </main>

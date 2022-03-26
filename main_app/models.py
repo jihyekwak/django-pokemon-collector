@@ -4,6 +4,13 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+class Battle(models.Model):
+
+    battle = models.CharField(max_length = 20)
+
+    def __str__(self):
+        return self.name
+
 TYPE_CHOICES = {
     ("Bug", "Bug"),
     ("Dark", "Dark"),
@@ -24,6 +31,11 @@ TYPE_CHOICES = {
     ("Water", "Water"),
 }
 
+GENDER_CHOICES = {
+    ("Male", "Male"),
+    ("Female", "Female")
+}
+
 class Pokemon(models.Model):
 
     name = models.CharField(max_length = 20)
@@ -31,9 +43,11 @@ class Pokemon(models.Model):
     type = models.CharField(max_length = 10, choices = TYPE_CHOICES)
     description = models.TextField(blank = True)
     abilities = ArrayField(models.CharField(max_length = 20), blank = True)
+    gender = models.CharField(max_length = 10, choices = GENDER_CHOICES)
     evolved = models.BooleanField(default = False)
     collected = models.BooleanField(default = False)
     user = models.ForeignKey(User, on_delete = models.CASCADE)
+    battle = models.ManyToManyField(Battle)
     created_at = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
