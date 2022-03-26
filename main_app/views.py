@@ -70,7 +70,7 @@ class Detail(DetailView, DeleteView):
 
 class Create(CreateView):
     model = Pokemon
-    fields = ['name', 'img', 'type', 'description', 'abilities', 'evolved', 'collected', 'user', 'battle']
+    fields = ['name', 'img', 'type', 'description', 'abilities', 'gender', 'evolved', 'collected', 'user', 'battle']
     template_name= "create.html"
     success_url ="/index/"
 
@@ -82,7 +82,7 @@ class Create(CreateView):
 
 class Update(UpdateView):
     model = Pokemon
-    fields = ['name', 'img', 'type', 'description', 'abilities', 'evolved', 'collected', 'user', 'battle']
+    fields = ['name', 'img', 'type', 'description', 'abilities', 'gender', 'evolved', 'collected', 'user', 'battle']
     template_name = "update.html"
     def get_success_url(self):
         return reverse('detail', kwargs = {'pk': self.object.pk})
@@ -108,15 +108,15 @@ class Battle_Create(CreateView):
     model = Battle
     fields = '__all__'
     template_name = 'battle_create.html'
-    success_rul = "/battles/"
+    success_url = "/battles/"
 
 class Battle_Update(UpdateView):
     model = Battle
     fields = ['battle']
     template_name = 'battle_update.html'
-    success_rul = "/battles/"
+    success_url = "/battles/"
 
 class Battle_Delete(DeleteView):
     model = Battle
-    template_name = 'battle_delete.html'
-    success_rul = "/battles/"
+    template_name = 'battle_delete_confirmation.html'
+    success_url = "/battles/"
