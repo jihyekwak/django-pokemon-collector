@@ -30,7 +30,11 @@ Index of Pokemons
                     {{ability}},
                 {% endfor %}</li>
             <li>Evolved: {{pokemon.evolved}}</li>
-            <li>Collected: {{pokemon.collected}}</li>
+            <li>Gender: {{pokemon.gender}}</li>
+            <li>Leagues: 
+                {% for league in pokemon.leagues.all %}
+                    {{league}}
+                {% endfor %}</li>
             <a href="{% url 'detail' pokemon.pk %}">
                 <button>Pokemon Detail</button>
             </a>

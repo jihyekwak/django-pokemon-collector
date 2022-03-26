@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Pokemon Leagues List</h1>
+
+    {% for league in leagues %}
+    <div>
+        <a href="{% url 'league_show' league.id %}">
+            <div>
+                <h3>{{league.name}}</h3>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+{% endblock %}

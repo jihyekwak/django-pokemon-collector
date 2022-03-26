@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from sre_constants import SUCCESS
-from .models import Pokemon, Battle
+from .models import Pokemon, PokemonMove, League
 from django.contrib.auth.models import User
 from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
@@ -54,23 +54,15 @@ class Index(TemplateView):
             context['header']= "Index of Pokemon"
         return context
 
-class Collection(TemplateView):
-    template_name = 'collection.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['pokemons']= Pokemon.objects.filter(collected = True)
-        return context
-
 class Detail(DetailView, DeleteView):
     model = Pokemon
-    fields = ['name', 'img', 'type', 'description', 'abilities', 'evolved', 'collected']
+    fields = ['name', 'img', 'type', 'description', 'abilities', 'moves', 'gender', 'evolved', 'user', 'leagues']
     template_name = "detail.html"
     success_url = "/index/"
 
 class Create(CreateView):
     model = Pokemon
-    fields = ['name', 'img', 'type', 'description', 'abilities', 'gender', 'evolved', 'collected', 'user', 'battle']
+    fields = ['name', 'img', 'type', 'description', 'abilities', 'moves', 'gender', 'evolved', 'user', 'leagues']
     template_name= "create.html"
     success_url ="/index/"
 
@@ -82,7 +74,7 @@ class Create(CreateView):
 
 class Update(UpdateView):
     model = Pokemon
-    fields = ['name', 'img', 'type', 'description', 'abilities', 'gender', 'evolved', 'collected', 'user', 'battle']
+    fields = ['name', 'img', 'type', 'description', 'abilities',  'moves', 'gender', 'evolved', 'user', 'leagues']
     template_name = "update.html"
     def get_success_url(self):
         return reverse('detail', kwargs = {'pk': self.object.pk})
@@ -96,27 +88,27 @@ def users(request):
     users = User.objects.all()
     return render(request, 'users.html', {'users':users})
 
-def battles_index(request):
-    battles = Battle.objects.all()
-    return render(request, 'battles_index.html', {'battles': battles})
+def leagues_index(request):
+    leagues = League.objects.all()
+    return render(request, 'leagues_index.html', {'leagues': leagues})
 
-def battle_show(request, battle_id):
-    battle = Battle.objects.get(id=battle_id)
-    return render(request, 'battle_show.html', {'battle': battle})
+def league_show(request, league_id):
+    league = League.objects.get(id=league_id)
+    return render(request, 'league_show.html', {'league': league})
 
-class Battle_Create(CreateView):
-    model = Battle
+class League_Create(CreateView):
+    model = League
     fields = '__all__'
-    template_name = 'battle_create.html'
-    success_url = "/battles/"
+    template_name = 'league_create.html'
+    success_url = "/leagues/"
 
-class Battle_Update(UpdateView):
-    model = Battle
-    fields = ['battle']
-    template_name = 'battle_update.html'
-    success_url = "/battles/"
+class League_Update(UpdateView):
+    model = League
+    fields = ['name']
+    template_name = 'league_update.html'
+    success_url = "/leagues/"
 
-class Battle_Delete(DeleteView):
-    model = Battle
-    template_name = 'battle_delete_confirmation.html'
-    success_url = "/battles/"
+class League_Delete(DeleteView):
+    model = League
+    template_name = 'league_delete_confirmation.html'
+    success_url = "/leagues/"

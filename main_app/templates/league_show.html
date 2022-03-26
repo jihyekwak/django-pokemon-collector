@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Battle Details</h1>
+
+    <div>
+        <div>
+            <h2>{{league.name}}</h2>
+            {% for pokemon in league.pokemon_set.all %}
+                <p>{{pokemon.name}} {{pokemon.type}}</p>
+            {% empty %}
+                <p>No Pokemon is in this league</p>
+            {% endfor %}
+        </div>
+        <div>
+            <a href="{% url 'league_update' league.id %}">Edit</a>
+            <a href="{% url 'league_delete' league.id %}">Delete</a>
+        </div>
+    </div>
+
+{% endblock %}

@@ -8,12 +8,11 @@ urlpatterns = [
     path('index/new/', views.Create.as_view(), name="create"),
     path('index/<int:pk>/', views.Detail.as_view(), name="detail"),
     path('index/<int:pk>/update', views.Update.as_view(), name="update"),
-    path('collection/', views.Collection.as_view(), name="collection"),
     path('user/<username>/', views.profile, name="profile"),
     path('users/', views.users, name="users"),
-    path('battles/', views.battles_index, name="battles_index"),
-    path('battles/<int:battle_id>/', views.battle_show, name="battle_show"),
-    path('battles/new', views.Battle_Create.as_view(), name="battle_create"),
-    path('batttles/<int:pk>/update', views.Battle_Update.as_view(), name="battle_update"),
-    path('battles/<int:pk>/delete', views.Battle_Delete.as_view(), name="battle_delete")
+    path('leagues/', views.leagues_index, name="leagues_index"),
+    path('leagues/<int:league_id>/', views.league_show, name="league_show"),
+    path('leagues/new', views.League_Create.as_view(), name="league_create"),
+    path('leagues/<int:pk>/update', views.League_Update.as_view(), name="league_update"),
+    path('leagues/<int:pk>/delete', views.League_Delete.as_view(), name="league_delete")
 ]
