@@ -11,4 +11,9 @@ urlpatterns = [
     path('collection/', views.Collection.as_view(), name="collection"),
     path('user/<username>/', views.profile, name="profile"),
     path('users/', views.users, name="users")
+    path('battles/', views.battles_index, name="battles_index"),
+    path('battles/<int:batte_id>/', views.battle_show, name="battle_show"),
+    path('battles/new', views.Battle_Create.as_view(), name="battle_create"),
+    path('batttles/<int:pk>/update', views.Battle_Update.as_view(), name="battle_update"),
+    path('battles/<int:pk>/delete', views.Battle_Delete.as_view(), name="battle_delete")
 ]
