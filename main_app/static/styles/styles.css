@@ -2,8 +2,20 @@
 #C8A103
 #2E69B2 */
 
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+* {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#pokemon-logo {
+    width: 500px;
+}
+
 nav {
     margin: 10px;
+    padding: 5px;
+    background-color: #C8A103;
 }
 
 nav li{

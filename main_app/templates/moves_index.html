@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="/moves/new">Add a Pokemon Move</a>
+<h1>Pokemon Moves</h1>
+
+{% for move in moves %}
+
+
+<div>
+    <a href="{% url 'move_show' move.id %}">
+        <div>
+            <h3>{{move.name}} | {{move.type}}</h3>
+        </div>
+    </a>
+</div>
+{% endfor %}
+{% endblock %}

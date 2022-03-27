@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from sre_constants import SUCCESS
-from .models import Pokemon, PokemonMove, League
+from .models import Pokemon, Move, League
 from django.contrib.auth.models import User
 from django.views.generic.base import TemplateView
 from django.views.generic import DetailView
@@ -39,6 +39,9 @@ class About(TemplateView):
 # ]
 
 # collected_pokemons = [pokemon for pokemon in pokemons if pokemon.is_collected]
+
+
+# Pokemon
 
 class Index(TemplateView):
     template_name='index.html'
@@ -79,6 +82,9 @@ class Update(UpdateView):
     def get_success_url(self):
         return reverse('detail', kwargs = {'pk': self.object.pk})
 
+
+# User
+
 def profile(request, username):
     user = User.objects.get(username = username)
     pokemons = Pokemon.objects.filter(user = user)
@@ -87,6 +93,42 @@ def profile(request, username):
 def users(request):
     users = User.objects.all()
     return render(request, 'users.html', {'users':users})
+
+
+# PokemonMove
+
+def moves_index(request):
+    moves = Move.objects.all()
+    return render(request, 'moves_index.html', {'moves': moves})
+
+def move_show(request, move_id):
+    move = Move.objects.get(id = move_id)
+    return render(request, 'move_show.html', {'move': move})
+
+class Move_Create(CreateView):
+    model = Move
+    fields = '__all__'
+    template_name = 'move_create.html'
+    success_url = "/moves/"
+
+class Move_Update(UpdateView):
+    models = Move
+    fields = ['name', 'type']
+    template_name = 'move_update.html'
+    success_url = "/moves/"
+
+    def get_queryset(self):
+        return Move.objects.all()
+
+class Move_Delete(DeleteView):
+    models = Move
+    template_name = 'move_delete_confirmation.html'
+    success_url = "/moves/"
+
+    def get_queryset(self):
+        return Move.objects.all()
+
+# League
 
 def leagues_index(request):
     leagues = League.objects.all()

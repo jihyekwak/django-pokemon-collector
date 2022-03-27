@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Move Details</h1>
+
+    <div>
+        <div>
+            <h2>{{move.name}} | {{move.type}}</h2>
+            {% for pokemon in move.pokemon_set.all %}
+                <p>{{pokemon.name}} {{pokemon.type}}</p>
+            {% empty %}
+                <p>No Pokemon has this move</p>
+            {% endfor %}
+        </div>
+        <div>
+            <a href="{% url 'move_update' move.id %}"><button>Update</button></a>
+        </div>
+        <div>
+            <a href="{% url 'move_delete' move.id %}"><button>Delete</button></a>
+        </div>
+    </div>
+
+{% endblock %}

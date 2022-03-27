@@ -27,8 +27,18 @@
                         {% for ability in pokemon.abilities %}
                             {{ability}},
                         {% endfor %}</li>
+                        <li>Moves: 
+                            {% for move in pokemon.moves.all %}
+                                {{move}}
+                            {% endfor %}
+                        </li>
                         <li>Evolved: {{pokemon.evolved}}</li>
-                        <li>Collected: {{pokemon.collected}}</li>
+                        <li>Gender: {{pokemon.gender}}</li>
+                        <li>Leagues: 
+                            {% for league in pokemon.leagues.all %}
+                                {{league}}
+                            {% endfor %}
+                        </li>
                     </ul>
                 </div>
             </a>

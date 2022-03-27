@@ -16,6 +16,9 @@ Index of Pokemons
         </select>
     </div>
 </form>
+
+<a href="/index/new">Add a Pokemon |</a>
+
 <main class="index">
     <h1>{{header}}</h1>
     {% for pokemon in pokemons %}
@@ -29,12 +32,18 @@ Index of Pokemons
                 {% for ability in pokemon.abilities %}
                     {{ability}},
                 {% endfor %}</li>
+            <li>Moves: 
+                {% for move in pokemon.moves.all %}
+                    {{move}}
+                {% endfor %}
+            </li>
             <li>Evolved: {{pokemon.evolved}}</li>
             <li>Gender: {{pokemon.gender}}</li>
             <li>Leagues: 
                 {% for league in pokemon.leagues.all %}
                     {{league}}
-                {% endfor %}</li>
+                {% endfor %}
+            </li>
             <a href="{% url 'detail' pokemon.pk %}">
                 <button>Pokemon Detail</button>
             </a>

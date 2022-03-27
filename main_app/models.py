@@ -6,24 +6,27 @@ from django.contrib.auth.models import User
 
 class League(models.Model):
 
-    name = models.CharField(max_length = 20)
+    name = models.CharField(max_length = 20, blank = True)
 
     def __str__(self):
         return self.name
 
 MOVETYPE_CHOICES = {
     ('Physical', 'Physical'),
-    ('Special', 'Specila'),
-    ('Status', 'Staus')
+    ('Special', 'Special'),
+    ('Status', 'Status')
 }
 
-class PokemonMove(models.Model):
+class Move(models.Model):
 
     name = models.CharField(max_length=10)
     type = models.CharField(max_length = 10, choices = MOVETYPE_CHOICES)
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        ordering = ['type']
 
 TYPE_CHOICES = {
     ("Bug", "Bug"),
@@ -57,11 +60,11 @@ class Pokemon(models.Model):
     type = models.CharField(max_length = 10, choices = TYPE_CHOICES)
     description = models.TextField(blank = True)
     abilities = ArrayField(models.CharField(max_length = 20), blank = True)
-    moves = models.ManyToManyField(PokemonMove)
+    moves = models.ManyToManyField(Move, blank = True)
     gender = models.CharField(max_length = 10, choices = GENDER_CHOICES)
     evolved = models.BooleanField(default = False)
     user = models.ForeignKey(User, on_delete = models.CASCADE)
-    leagues = models.ManyToManyField(League)
+    leagues = models.ManyToManyField(League, blank = True)
     created_at = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):

@@ -7,7 +7,7 @@
     
     <form action="" method="post">
         {% csrf_token %}
-        <input type="submit" value="Yes Delete">
+        <input type="submit" value="Delete League">
         <a href="{% url 'league_show' league.id%}">Cancel</a>
     </form>
 
