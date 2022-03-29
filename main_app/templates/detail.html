@@ -38,12 +38,8 @@
         <a href="{% url 'update' pokemon.pk %}"> 
             <button>Update Pokemon</button>
         </a>
-        <a href="{% url 'update' pokemon.pk %}"> 
+        <a href="{% url 'delete' pokemon.pk %}"> 
             <button>Delete Pokemon</button>
         </a>
-            <!-- <form method="post">
-                {% csrf_token %}
-                <input type="submit" value="Delete Pokemon" />
-            </form> --> 
     </div>
 {% endblock %}

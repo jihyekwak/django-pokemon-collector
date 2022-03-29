@@ -17,11 +17,15 @@
             <li><a href="/index">Pokemon Index |</a></li>
             <li><a href="/index/new">Add a Pokemon |</a></li>
             <li><a href="/moves">Moves |</a></li>
-            <!-- <li><a href="/moves/new">Add a Pokemon Move |</a></li> -->
             <li><a href="/leagues">Leagues |</a></li>
-            <!-- <li><a href="/leagues/new">Add a League |</a></li> -->
-            <li><a href="/user/{{user.username}}">Profile |</a></li>
             <li><a href="/users">Users |</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="/user/{{user.username}}">Hello, {{ user.username}} |</a></li>
+            <li><a href="/logout">Logout |</a></li>
+            {% else %}
+            <li><a href="/login">Login |</a></li>
+            <li><a href="/signup">Signup |</a></li>
+            {% endif %}
             <li><a href="/admin">Admin |</a></li>
         </ul>
     </nav>

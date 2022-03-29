@@ -72,7 +72,7 @@ class Detail(DetailView, DeleteView):
 @method_decorator(login_required, name='dispatch')
 class Delete(DeleteView):
     model = Pokemon
-    template_name = "detail.html"
+    template_name = "delete_confirmation.html"
     success_url = "/index/"
 
 @method_decorator(login_required, name='dispatch')
@@ -182,7 +182,7 @@ def login_view(request):
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             u = form.cleaned_data['username']
-            p = form.changed_data['password']
+            p = form.cleaned_data['password']
             user = authenticate(username = u, password = p)
             if user is not None:
                 if user.is_active:
