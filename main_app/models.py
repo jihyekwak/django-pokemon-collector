@@ -19,7 +19,7 @@ MOVETYPE_CHOICES = {
 
 class Move(models.Model):
 
-    name = models.CharField(max_length=10)
+    name = models.CharField(max_length = 20)
     type = models.CharField(max_length = 10, choices = MOVETYPE_CHOICES)
 
     def __str__(self):

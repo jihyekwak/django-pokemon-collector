@@ -2,16 +2,32 @@
 
 {% block content %}
 
-<a href="/leagues/new">Add a League |</a>
-    <h1>Pokemon Leagues List</h1>
+    <h1 class="list-h1">Pokemon Leagues List</h1>
+    <a href="/leagues/new">+ Add a League</a>
 
-    {% for league in leagues %}
-    <div>
-        <a href="{% url 'league_show' league.id %}">
-            <div>
-                <h3>{{league.name}}</h3>
+        {% for league in leagues %}
+            <div class="league-index">
+                <h2 class="league-name">{{league.name}}</h2>
+                <h3>Participants: {{ league.pokemon_set.all|length }}</h3>
+                <ul>
+                    {% for pokemon in league.pokemon_set.all %}
+                    <li>{{pokemon.name}} {{pokemon.type}}</li>
+                        {% empty %}
+                    <p>No Pokemon participates in this league</p>
+                    {% endfor %}
+                </ul>
+                <div class="league-edit-delete">
+                    <a href="{% url 'league_update' league.id %}">
+                        <button>Update</button>
+                    </a>
+                    <a href="{% url 'league_delete' league.id %}">
+                        <button>Delete</button>
+                    </a>
+                </div>
+                
             </div>
-        </a>
-    </div>
-    {% endfor %}
+        {% endfor %}
+
+
+
 {% endblock %}

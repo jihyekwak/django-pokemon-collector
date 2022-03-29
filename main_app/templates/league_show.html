@@ -1,16 +1,19 @@
-{% extends 'base.html' %}
+<!-- {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Battle Details</h1>
+    <h1>League Details</h1>
 
     <div>
         <div>
             <h2>{{league.name}}</h2>
-            {% for pokemon in league.pokemon_set.all %}
-                <p>{{pokemon.name}} {{pokemon.type}}</p>
+            <h3>League Participants: {{ league.pokemon_set.all|length }}</h3>
+            <ul>
+                {% for pokemon in league.pokemon_set.all %}
+                <li>{{pokemon.name}} {{pokemon.type}}</li>
             {% empty %}
                 <p>No Pokemon is in this league</p>
             {% endfor %}
+            </ul>
         </div>
         <div>
             <a href="{% url 'league_update' league.id %}">Edit</a>
@@ -18,4 +21,4 @@
         </div>
     </div>
 
-{% endblock %}
+{% endblock %} -->

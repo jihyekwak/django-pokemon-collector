@@ -3,7 +3,7 @@
 {% block content %}
 
 <h1>League Update {{league.name}}</h1>
-<form action="" method="post">
+<form class="create-form" action="" method="post">
     {% csrf_token %}
     <table>
         {{form.as_table}}

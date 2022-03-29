@@ -19,7 +19,7 @@ urlpatterns = [
     path('moves/<int:pk>/delete', views.Move_Delete.as_view(), name="move_delete"),
 
     path('leagues/', views.leagues_index, name="leagues_index"),
-    path('leagues/<int:league_id>/', views.league_show, name="league_show"),
+    # path('leagues/<int:league_id>/', views.league_show, name="league_show"),
     path('leagues/new', views.League_Create.as_view(), name="league_create"),
     path('leagues/<int:pk>/update', views.League_Update.as_view(), name="league_update"),
     path('leagues/<int:pk>/delete', views.League_Delete.as_view(), name="league_delete"),

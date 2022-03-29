@@ -2,13 +2,9 @@
 
 {% block content %}
 
-<h1>{{username}}'s Profile</h1>
-
-
-
     <h1>{{username}}'s Collection</h1>
     <h3>Collected Pokemons :  {{ pokemons|length }}</h3>
-<main class="collection">
+<main class="index">
     {% for pokemon in pokemons %}
         <div class="pokemon-collection">
             <a href="{% url 'detail' pokemon.pk %}">

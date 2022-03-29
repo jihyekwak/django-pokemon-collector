@@ -1,41 +1,49 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>{{pokemon.name}}</h3>
-    <img src="{{pokemon.img}}" alt="{{pokemon.name}}">
-    <ul>
-        <li>Type: {{pokemon.type}}</li>
-        <li>Description: {{pokemon.description}}</li>
-        <li>Abilities: 
-            {% for ability in pokemon.abilities %}
-                {{ability}},
-            {% endfor %}</li>
-        <li>Moves: 
-            {% for move in pokemon.moves.all %}
-                {{move}}
-            {% endfor %}
-        </li>
-        <li>Evolved: {{pokemon.evolved}}</li>
-        <li>Gender: {{pokemon.gender}}</li>
-        <li>Leagues: 
-            {% for league in pokemon.leagues.all %}
-                {{league}}
-            {% endfor %}
-        </li>
-        <li>Date: {{pokemon.created_at}}</li>
-    </ul>
-    <div>
-        <div>
-            <a href="{% url 'update' pokemon.pk %}"> 
-                <button>Update Pokemon</button>  
-            </a>
+    <h1>Pokemon Details</h1>
+    <div class="detail">
+        <div class="detail-name-img">
+            <h2>{{pokemon.name}}</h2>
+            <img class="detail-img" src="{{pokemon.img}}" alt="{{pokemon.name}}">
         </div>
-        <div>
-            <form method="post">
+            
+        <div class="detail-detail">
+            <ul>
+                <li>Type: {{pokemon.type}}</li>
+                <li>Description: {{pokemon.description}}</li>
+                <li>Abilities: 
+                    {% for ability in pokemon.abilities %}
+                        {{ability}}
+                    {% endfor %}</li>
+    
+                <li>Evolved: {{pokemon.evolved}}</li>
+                <li>Gender: {{pokemon.gender}}</li>
+                <li>Moves: 
+                    {% for move in pokemon.moves.all %}
+                        {{move}}
+                    {% endfor %}
+                </li>
+                <li>Leagues: 
+                    {% for league in pokemon.leagues.all %}
+                        {{league}}
+                    {% endfor %}
+                </li>
+                <li>Date: {{pokemon.created_at}}</li>
+            </ul>
+        </div>
+    </div>
+     
+    <div class="edit-delete">
+        <a href="{% url 'update' pokemon.pk %}"> 
+            <button>Update Pokemon</button>
+        </a>
+        <a href="{% url 'update' pokemon.pk %}"> 
+            <button>Delete Pokemon</button>
+        </a>
+            <!-- <form method="post">
                 {% csrf_token %}
                 <input type="submit" value="Delete Pokemon" />
-            </form>
-        </div>
-        
+            </form> --> 
     </div>
 {% endblock %}

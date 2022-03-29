@@ -6,49 +6,30 @@ Index of Pokemons
 
 {% block content %}
 
-<form>
-    <div>
-        <input type="text" name="name" placeholder="Pokemon Name">
-        <input type="submit" value="Search">
-        <a href="{% url 'index' %}">Clear Search</a>
-        <select>
-            <option>type</option>
-        </select>
-    </div>
-</form>
+    <form class="search-pokemon">
+        <div>
+            <input type="text" name="name" placeholder="Pokemon Name">
+            <input type="submit" value="Search">
+            <a href="{% url 'index' %}">Clear Search</a>
+            <!-- <select>
+                <option>type</option>
+            </select> -->
+        </div>
+    </form>
 
-<a href="/index/new">Add a Pokemon |</a>
-
-<main class="index">
     <h1>{{header}}</h1>
-    {% for pokemon in pokemons %}
-    <div class="pokemon-index">
-        <img src="{{pokemon.img}}" alt="{{pokemon.name}}">
-        <h3>{{pokemon.name}}</h3>
-        <ul>
-            <li>Type: {{pokemon.type}}</li>
-            <li>Description: {{pokemon.description}}</li>
-            <li>Abilities: 
-                {% for ability in pokemon.abilities %}
-                    {{ability}},
-                {% endfor %}</li>
-            <li>Moves: 
-                {% for move in pokemon.moves.all %}
-                    {{move}}
-                {% endfor %}
-            </li>
-            <li>Evolved: {{pokemon.evolved}}</li>
-            <li>Gender: {{pokemon.gender}}</li>
-            <li>Leagues: 
-                {% for league in pokemon.leagues.all %}
-                    {{league}}
-                {% endfor %}
-            </li>
-            <a href="{% url 'detail' pokemon.pk %}">
-                <button>Pokemon Detail</button>
-            </a>
-        </ul>
+
+    <div class="index">
+
+        {% for pokemon in pokemons %}
+            <div class="index-card-content">
+                <a href="{% url 'detail' pokemon.pk %}">
+                    <img src="{{pokemon.img}}" alt="{{pokemon.name}}">
+                    <h3>{{pokemon.name}}</h3>
+                    <p>{{pokemon.type}}</p>
+                </a>
+            </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</main>
+
 {% endblock %}

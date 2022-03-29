@@ -65,7 +65,7 @@ class Detail(DetailView, DeleteView):
 
 class Create(CreateView):
     model = Pokemon
-    fields = ['name', 'img', 'type', 'description', 'abilities', 'moves', 'gender', 'evolved', 'user', 'leagues']
+    fields = ['name', 'img', 'type', 'description','gender', 'evolved', 'user']
     template_name= "create.html"
     success_url ="/index/"
 
@@ -88,7 +88,7 @@ class Update(UpdateView):
 def profile(request, username):
     user = User.objects.get(username = username)
     pokemons = Pokemon.objects.filter(user = user)
-    return render(request, 'profile.html', {'username': username, 'pokemons': pokemons})
+    return render(request, 'profile.html', {'username': username.capitalize(), 'pokemons': pokemons})
 
 def users(request):
     users = User.objects.all()
@@ -134,9 +134,9 @@ def leagues_index(request):
     leagues = League.objects.all()
     return render(request, 'leagues_index.html', {'leagues': leagues})
 
-def league_show(request, league_id):
-    league = League.objects.get(id=league_id)
-    return render(request, 'league_show.html', {'league': league})
+# def league_show(request, league_id):
+#     league = League.objects.get(id=league_id)
+#     return render(request, 'league_show.html', {'league': league})
 
 class League_Create(CreateView):
     model = League
