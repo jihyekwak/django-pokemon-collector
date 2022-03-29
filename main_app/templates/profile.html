@@ -4,17 +4,18 @@
 
     <h1>{{username}}'s Collection</h1>
     <h3>Collected Pokemons :  {{ pokemons|length }}</h3>
-<main class="index">
+    
+    <div class="index">
     {% for pokemon in pokemons %}
-        <div class="pokemon-collection">
+        <div class="collection-card-content">
             <a href="{% url 'detail' pokemon.pk %}">
-                <div class="pokemon-collection-name-img">
+                <div class="collection-name-img">
                     <h3>{{pokemon.name}}</h3>
                     <img src="{{pokemon.img}}" alt="{{pokemon.name}}">
                     <p>{{pokemon.type}} Type</p>
                 </div>
             
-                <div class="pokemon-collection-detail">
+                <div class="collection-detail">
                     <h3>{{pokemon.name}}</h3>
                     <ul>
                         <li><p>Type: {{pokemon.type}}</p></li>
@@ -23,18 +24,18 @@
                         {% for ability in pokemon.abilities %}
                             {{ability}},
                         {% endfor %}</li>
-                        <li>Moves: 
+                        <!-- <li>Moves: 
                             {% for move in pokemon.moves.all %}
                                 {{move}}
                             {% endfor %}
-                        </li>
+                        </li> -->
                         <li>Evolved: {{pokemon.evolved}}</li>
                         <li>Gender: {{pokemon.gender}}</li>
-                        <li>Leagues: 
+                        <!-- <li>Leagues: 
                             {% for league in pokemon.leagues.all %}
                                 {{league}}
                             {% endfor %}
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </a>
@@ -43,6 +44,6 @@
         <p>No pokemons yet</p>
 
     {% endfor %}
-</main>
+</div>
 
 {% endblock %}
