@@ -23,4 +23,8 @@ urlpatterns = [
     path('leagues/new', views.League_Create.as_view(), name="league_create"),
     path('leagues/<int:pk>/update', views.League_Update.as_view(), name="league_update"),
     path('leagues/<int:pk>/delete', views.League_Delete.as_view(), name="league_delete"),
+
+    path('login/', views.login_view, name="login"),
+    path('logout/', views.logout_view, name="logout"),
+    path('signup/', views.signup_view, name="signup")
 ]
