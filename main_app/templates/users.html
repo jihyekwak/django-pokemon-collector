@@ -3,13 +3,16 @@
 {% block content %}
 <h1>Trainers</h1>
     {% for user in users %}
+    <div class="user-index">
         <a href="/user/{{user.username}}">
-            <h3>{{user.username}}({{user.pokemon_set.all|length}})</h3>
+            <h2>{{user.username}} ({{user.pokemon_set.all|length}})</h2>
         </a>
-        <!-- {% for pokemon in user.pokemon_set.all %}
+        {% for pokemon in user.pokemon_set.all %}
             <p>{{pokemon.name}}</p>
         {% empty %}
             <p>No pokemon yet</p>
-        {% endfor %} -->
+        {% endfor %}
+    </div>
+       
     {% endfor %}
 {% endblock %}

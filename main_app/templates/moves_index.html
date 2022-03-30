@@ -2,17 +2,34 @@
 
 {% block content %}
 
-<h1 class="list-h1">Pokemon Moves</h1>
-<a href="/moves/new">+ Add a Pokemon Move</a>
+<div class="page-h1">
+    <h1 class="list-h1">Pokemon Moves</h1>
+    <a href="/moves/new">+ Add a Pokemon Move</a>
+</div>
+
+
 {% for move in moves %}
+    <div class="move-index">
 
-
-<div>
-    <a href="{% url 'move_show' move.id %}">
         <div>
             <h3>{{move.name}} | {{move.type}}</h3>
         </div>
-    </a>
-</div>
+        <ul>
+            {% for pokemon in move.pokemon_set.all %}
+            <li>{{pokemon.name}}</li>
+                {% empty %}
+            <p>No Pokemon has this move</p>
+            {% endfor %}
+        </ul>
+
+        <div class="league-edit-delete">
+            <a href="{% url 'move_update' move.id %}">
+                <button>Update</button>
+            </a>
+            <a href="{% url 'move_delete' move.id %}">
+                <button>Delete</button>
+            </a>
+        </div>
+    </div>
 {% endfor %}
 {% endblock %}

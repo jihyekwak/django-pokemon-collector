@@ -85,9 +85,9 @@ def moves_index(request):
     moves = Move.objects.all()
     return render(request, 'moves_index.html', {'moves': moves})
 
-def move_show(request, move_id):
-    move = Move.objects.get(id = move_id)
-    return render(request, 'move_show.html', {'move': move})
+# def move_show(request, move_id):
+#     move = Move.objects.get(id = move_id)
+#     return render(request, 'move_show.html', {'move': move})
 
 @method_decorator(login_required, name='dispatch')
 class Move_Create(CreateView):
@@ -178,9 +178,9 @@ def signup_view(request):
             user = form.save()
             login(request, user)
             print('Hello', user.username)
-            return HttpResponseRedirect('/user/' + str(user))
+            return HttpResponseRedirect('/user/'+ str(user))
         else:
-            HttpResponse('<h1>Try again</h1>')
+            HttpResponse('<h1>Try again...</h1>')
     else:
         form = UserCreationForm()
         return render(request, 'signup.html', {'form': form})

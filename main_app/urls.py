@@ -14,7 +14,7 @@ urlpatterns = [
     path('user/<username>/', views.profile, name="profile"),
 
     path('moves/', views.moves_index, name="moves_index"),
-    path('moves/<int:move_id>/', views.move_show, name="move_show"),
+    # path('moves/<int:move_id>/', views.move_show, name="move_show"),
     path('moves/new', views.Move_Create.as_view(), name="move_create"),
     path('moves/<int:pk>/update', views.Move_Update.as_view(), name="move_update"),
     path('moves/<int:pk>/delete', views.Move_Delete.as_view(), name="move_delete"),
