@@ -20,7 +20,7 @@ MOVETYPE_CHOICES = {
 class Move(models.Model):
 
     name = models.CharField(max_length = 20)
-    type = models.CharField(max_length = 10, choices = MOVETYPE_CHOICES)
+    type = models.CharField(max_length = 20, choices = MOVETYPE_CHOICES)
 
     def __str__(self):
         return self.name
@@ -57,7 +57,7 @@ class Pokemon(models.Model):
 
     name = models.CharField(max_length = 20)
     img = models.CharField(max_length = 250)
-    type = models.CharField(max_length = 10, choices = TYPE_CHOICES)
+    type = models.CharField(max_length = 20, choices = TYPE_CHOICES)
     description = models.TextField(blank = True)
     abilities = ArrayField(models.CharField(max_length = 20), blank = True)
     moves = models.ManyToManyField(Move, blank = True)
