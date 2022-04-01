@@ -1,17 +1,8 @@
-/* #FFCC01
-#C8A103
-#2E69B2 */
-
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
 @font-face {
-    font-family: "Pokemon Solid";
-    src: url("/Users/jihyekwak/Library/Fonts/PokemonSolidNormal-szWR.ttf")
-}
-
-@font-face {
     font-family: "Pokemon Hollow";
-    src: url("/Users/jihyekwak/Library/Fonts/PokemonHollowNormal-pyPZ.ttf")
+    src: url("../fonts/PokemonHollowNormal-pyPZ.ttf") format('truetype');
 }
 
 * {
@@ -32,7 +23,6 @@
 }
 
 #home-h3 {
-    /* font-family: "Pokemon Solid"; */
     text-align: center;
     font-size: 40px;
     margin: 50px auto;

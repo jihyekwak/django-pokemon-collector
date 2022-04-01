@@ -103,17 +103,11 @@ class Move_Update(UpdateView):
     template_name = 'move_update.html'
     success_url = "/moves/"
 
-    # def get_queryset(self):
-    #     return Move.objects.all()
-
 @method_decorator(login_required, name='dispatch')
 class Move_Delete(DeleteView):
     model = Move
     template_name = 'move_delete_confirmation.html'
     success_url = "/moves/"
-
-    def get_queryset(self):
-        return Move.objects.all()
 
 # League
 
